@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import Image from 'gatsby-image'
 import Icons from './icons'
 
 const Card = styled.div`
@@ -28,6 +29,9 @@ const PropertPreview = ({ property }) => {
 
     return (
         <Card>
+            <Image 
+                fluid={image.sharp.fluid}
+            />
             <Content>
                 <h3>{name}</h3>
                 <p className="price">${price}</p>
