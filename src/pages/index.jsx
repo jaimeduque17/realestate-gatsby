@@ -3,8 +3,9 @@ import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 import BackgroundImage from 'gatsby-background-image'
 import Layout from '../components/layout'
-import useHome from '../hooks/usehome'
+import useHome from '../hooks/useHome'
 import Find from '../components/find'
+import ListProperties from '../components/listProperties'
 import heroCSS from '../css/hero.module.css'
 
 const ImageBackground = styled(BackgroundImage)`
@@ -41,6 +42,7 @@ const Index = () => {
                 </div>
             </main>
             <Find />
+            <ListProperties />
         </Layout>
     )
 }
