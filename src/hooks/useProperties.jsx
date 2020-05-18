@@ -10,8 +10,8 @@ const useProperties = () => {
                     id
                     wc
                     price
-                    parking
                     rooms
+                    parking
                     categories {
                         name
                     }
