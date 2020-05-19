@@ -5,6 +5,37 @@ import { graphql } from 'gatsby'
 import Icons from './icons'
 import Layout from './layout'
 
+const Content = styled.div`
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 95%;
+
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 5rem;
+    }
+`
+
+const Sidebar = styled.aside`
+    .price {
+        font-size: 2rem;
+        color: #75AB00;
+    }
+
+    .seller {
+        margin: 4rem 0 0 0;
+        border-radius: 2rem;
+        background-color: #75AB00;
+        padding: 3rem;
+        color: #FFF;
+
+        p {
+            margin: 0;
+        }
+    }
+`
+
 export const query = graphql`
     query($id: String!) {
         allStrapiProperties(filter: {id: {eq: $id}}) {
@@ -39,28 +70,28 @@ const Properties = ({ data: { allStrapiProperties: { nodes } } }) => {
     return (
         <Layout>
             <h1>{name}</h1>
-            <div>
+            <Content>
                 <main>
                     <Image
                         fluid={image.sharp.fluid}
                     />
                     <p>{description}</p>
                 </main>
-                <aside>
-                    <p>${price}</p>
+                <Sidebar>
+                    <p className="price">${price}</p>
                     <Icons
                         wc={wc}
                         parking={parking}
                         rooms={rooms}
                     />
-                    <div>
+                    <div className="seller">
                         <h2>Seller:</h2>
                         <p>{sellers.name}</p>
                         <p>{sellers.telephone}</p>
                         <p>{sellers.email}</p>
                     </div>
-                </aside>
-            </div>
+                </Sidebar>
+            </Content>
         </Layout>
     )
 }
