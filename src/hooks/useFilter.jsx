@@ -1,6 +1,23 @@
 import React, { useState } from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import styled from '@emotion/styled'
 
+const FilterForm = styled.form`
+    width: 100%;
+    display: flex;
+    margin: 2rem auto 0 auto;
+    border: 1px solid #E1E1E1;
+    max-width: 1200px;
+`
+
+const Select = styled.select`
+    flex: 1;
+    padding: 1rem;
+    appearance: none;
+    border: none;
+    font-family: 'Lato', sans-serif;
+`
+ 
 const useFilter = () => {
 
     const result = useStaticQuery(graphql`
@@ -19,14 +36,14 @@ const useFilter = () => {
     // console.log(categories)
 
     const FilterUI = () => (
-        <form>
-            <select>
+        <FilterForm>
+            <Select>
                 <option value="">-- Filter --</option>
                 {categories.map(option => (
                     <option key={option.id} value={option.name}>{option.name}</option>
                 ))}
-            </select>
-        </form>
+            </Select>
+        </FilterForm>
     )
 
     return {
