@@ -8,14 +8,20 @@ import listPropertiesCSS from '../css/listProperties.module.css'
 const ListProperties = () => {
 
     const result = useProperties()
-    const [properties, setProperties] = useState([])
+    const [properties] = useState(result)
+    const [filtrates, setFiltrates] = useState([])
 
     // property filter
-    const { FilterUI } = useFilter()
+    const { category, FilterUI } = useFilter()
 
     useEffect(() => {
-        setProperties(result)
-    }, [])
+        if(category) {
+            const filterCategory = properties.filter(property => property.category && property.category.name === category)
+            setFiltrates(filterCategory)
+        }else {
+            setFiltrates(properties)
+        }
+    }, [category, properties])
 
     // console.log(properties)
 
@@ -26,7 +32,7 @@ const ListProperties = () => {
             `}>Properties</h2>
             {FilterUI()}
             <ul className={listPropertiesCSS.properties}>
-                {properties.map(property => (
+                {filtrates.map(property => (
                     <PropertyPreview
                         key={property.id}
                         property={property}

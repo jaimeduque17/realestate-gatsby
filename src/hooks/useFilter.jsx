@@ -20,6 +20,8 @@ const Select = styled.select`
  
 const useFilter = () => {
 
+    const [category, setCategory] = useState('')
+
     const result = useStaticQuery(graphql`
         query {
             allStrapiCategories {
@@ -37,7 +39,10 @@ const useFilter = () => {
 
     const FilterUI = () => (
         <FilterForm>
-            <Select>
+            <Select
+                onChange={e => setCategory(e.target.value)}
+                value={category}
+            >
                 <option value="">-- Filter --</option>
                 {categories.map(option => (
                     <option key={option.id} value={option.name}>{option.name}</option>
@@ -47,6 +52,7 @@ const useFilter = () => {
     )
 
     return {
+        category,
         FilterUI
     }
 }

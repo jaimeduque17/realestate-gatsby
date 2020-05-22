@@ -40,7 +40,7 @@ const Content = styled.div`
 
 const PropertPreview = ({ property }) => {
 
-    const { name, description, image, wc, parking, rooms, price } = property
+    const { name, image, wc, parking, rooms, price } = property
 
     return (
         <Card>
